@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Sign Up</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
+  <link rel="stylesheet" href="/css/style.css" >     
+  <!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+	var renderPage = true;
+  
+	if (navigator.userAgent.indexOf('MSIE') !== -1
+	  || navigator.appVersion.indexOf('Trident/') > 0) {
+	  /* Microsoft Internet Explorer detected in. */
+	  alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+	  renderPage = false;
+	}
+
+	function validateForm(){
+		var name= document.getElementById('username').value;
+		var mail = document.getElementById('email').value;
+		var sdt = document.getElementById('phone').value;
+		var pass= document.getElementById('pass').value;
+		var cfp=document.getElementById('cfpass').value;
+
+		if(name.length===0|| mail.length===0||sdt.length===0||pass.length===0|| cfp.length===0)
+		{
+			alert("Lack of information!");
+			return false;
+		}
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(mailmatch(mailformat)===false){
+			alert("Incorect email!!!");
+			return false;
+		}
+		if(pass.localeCompare(cfp)!=0){
+			alert("Incorect confirm password");
+			return false;
+		}
+		return true;
+	}
+
+  </script>
+</head>
+
+<body class="signup-body">
+	<header>
+		<!-- Loader -->
+		<div id="loader-wrapper">
+			<div id="loader"></div>
+			<div class="loader-section section-left"></div>
+			<div class="loader-section section-right"></div>
+	</div>
+	</header>
+	<main>
+  <div class="signup-form">
+	  {{#if err_message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{err_message}}
+        </div>
+        {{/if}}
+    <form method="POST" onsubmit="return validateForm()">
+		<h2>Sign Up</h2>
+		<p>Please fill in this form to create an account!</p>
+		<hr>
+		
+        {{#if message}}
+         <div class="alert alert-danger">
+           <p>{{message}}</p>
+         </div>
+         {{/if }}   
+        <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-user"></span>
+					</span>                    
+				</div>
+				<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required">
+			</div>
+        </div>
+        <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-paper-plane"></i>
+					</span>                    
+				</div>
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required="required">
+			</div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-phone"></i>
+              </span>                    
+            </div>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required="required">
+          </div>
+            </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-lock"></i>
+					</span>                    
+				</div>
+				<input type="password" class="form-control" id="pass" name="password" placeholder="Password" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-lock"></i>
+						<i class="fa fa-check"></i>
+					</span>                    
+				</div>
+				<input type="password" class="form-control" id="cfpass"name="confirm_password" placeholder="Confirm Password" required="required">
+			</div>
+        </div>
+        <div class="form-group">
+			<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+		</div>
+		<div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+        </div>
+    </form>
+	<div class="last-text text-center">Already have an account? ><a href="/account/login">Login here</a></div>
+</div>
+</main>
+
+<footer class="row tm-about-row">
+	<div class="col-xl-12">
+	  <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
+	  
+	  - Design:  Tooplate</p>
+	</div>
+  </footer>
+
+
+  <!-- load JS -->
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="/js/bootstrap.min.js"></script> <!-- https://getbootstrap.com/ -->
+   <script src="/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  
+   <script>
+ 
+     /* DOM is ready
+     ------------------------------------------------*/
+     $(function () {
+ 
+       if (renderPage) {
+         $('body').addClass('loaded');
+       }
+ 
+       $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+     });
+ 
+   </script>
+</body>
+
+</html>

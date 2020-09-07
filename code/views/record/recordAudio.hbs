@@ -1,0 +1,108 @@
+<style>
+   body {
+     background-color: black;
+    padding: 0px;
+    margin: 0px;
+    color: #fff;
+   }
+
+.part{
+  padding:0.2%;
+  border:3px rgb(73, 67, 67) solid;
+  width: 50%;
+  height: 100%;
+  
+}
+
+.part button{
+  padding:3px 5px;
+  margin: 4px;
+  background:rgb(32, 91, 219);
+  border:1px #fff solid;
+  border-radius:4px;
+  cursor: pointer;
+  font-size:auto;
+}
+
+.part button:hover{
+    background:rgb(1, 70, 219);
+}
+
+.part button:disabled{
+    background:rgb(252, 252, 252);
+    color:rgb(94, 88, 88);
+    
+}
+textarea{
+  text-align: start;
+  padding:5px;
+  margin:10px;
+}
+</style>
+
+
+<div class="d-flex">
+  <div class="part p-2 m-2 flex-fill">
+    <section>       
+    <audio id="record" controls autoplay muted playsinline>
+    </audio>
+   
+   <br>
+     <button  disabled id="startRecord">Start</button>
+     <button  disabled id="stopRecord">Stop</button>
+     <button  disabled id="pauseRecord">Pause</button>
+     <button  disabled id="resumeRecord">Resume</button>   
+     <button  disabled id="saveRecord">Save</button>
+   </br>
+    <div id="alert" class="alert alert-info" role="alert">
+        <p>- Cắm tai nghe để chất lượng bản thu tốt hơn, mic sẽ ít bị hú</p>
+        <p>- Trong quá trình thu, bật beat nhạc không quá to </p>
+        <p>- Hãy thu âm ở nơi ít tiếng ồn</p>
+    </div>
+    </section>
+    <section>
+     <div id="audio-container">         
+    </div>
+    </section>
+  </div>
+  <div class="part p-2 m-2 flex-fill">
+        
+        <audio controls="controls" preload="auto" id="audio">
+          <source id="audioSrc" src="" />
+        </audio>
+        <br>
+        <input type="file" accept="audio/*" id="file" onchange="changeFile(event)">
+        </br>
+        <p>
+            <label>Title:</label>
+            <span id="title"></span>
+        </p>
+    
+        <p>
+            <label>Artist:</label>
+            <span id="artist"></span>
+        </p>
+    
+        <p>
+            <label>Album:</label>
+            <span id="album"></span>
+        </p>
+         <p>
+            <label>Lyrics:</label>
+        </p>
+        <img id="picture" style="display: none; width:25vw ;height:25vw;" src="" alt= "picture extracted from ID3" />
+        <section>
+         
+          <textarea id="lyrics" name="lyrics" rows="40%" cols="40%">
+            Hãy copy lời bài hát của bạn vào đây!
+          </textarea>
+        </section>
+        
+     
+  </div>
+
+</div>
+{{#section 'script'}}
+<script src="/js/id3-minimized.js"></script>
+<script src="/js/record-audio.js"></script>
+{{/section}}

@@ -1,0 +1,27 @@
+<div style="padding:50px 0px 400px 0px" class="d-flex flex-column bd-highlight mb-3">
+	<div class="d-flex justify-content-center">
+		<iframe width="900" height="500" src="https://www.youtube.com/embed/{{id}}" frameborder="0" ></iframe>
+	</div>
+<div id="mydiv" data-test={{id}}></div>
+
+
+<div style="padding:50px 0px 0px 0px" class="d-flex justify-content-center">
+		<div id="controls">
+			<button id="recordButton">Record</button>
+			<button id="pauseButton" disabled>Pause</button>
+			<button id="stopButton" disabled>Stop</button>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center" id="formats">
+	<p><strong>Recordings:</strong></p>
+	</div>
+	<ul class="d-flex justify-content-center list-group" style= "padding:50px 0px 0px 0px" id="recordingsList"></ul>
+	
+</div>
+
+
+{{#section 'script'}}
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
+<script style="text/javascript" src="/js/script.js"></script>
+{{/section}}

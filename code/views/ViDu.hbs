@@ -1,0 +1,40 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/styleVD.css">
+<style>
+  body{background-color:black;color:#fff;}   
+</style>
+
+{{/section}}
+<div style="padding:50px 0px 400px 0px" class="wrapper">
+  <div style="padding:50px 0px 40px 0px" class="d-flex flex-column bd-highlight mb-3">
+    <div class="d-flex justify-content-center">
+      <iframe width="900" height="500" src="https://www.youtube.com/embed/{{id}}" frameborder="0"></iframe>
+    </div>
+    <div style="padding: 50px 0px 0px 370px">
+      <form id="uploadForm" enctype="multipart/form-data" method="post">
+        <input type="file" name="userFile" />
+        <input type="submit" value="Upload File" name="submit">
+
+      </form>
+    </div>
+
+  </div>
+
+
+  <section class="main-controls">
+    <canvas class="visualizer" height="60px"></canvas>
+    <div id="buttons">
+      <button class="record">Record</button>
+      <button class="stop">Stop</button>
+    </div>
+  </section>
+
+  <section class="sound-clips">
+
+
+  </section>
+
+</div>
+{{#section 'script'}}
+<script style="text/javascript" src="/js/scriptVD.js"></script>
+{{/section}}

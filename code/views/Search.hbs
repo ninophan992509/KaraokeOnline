@@ -1,0 +1,79 @@
+<div class="tm-search-form-container">
+  <div class="form-inline tm-search-form">
+    <div class="text-uppercase tm-new-release">New Release</div>
+    <div class="form-group tm-search-box">
+      <input type="text" id="keyword" class="form-control tm-search-input" placeholder="Type your keyword ...">
+      <button type="submit" onclick="keyWordsearch()" class="form-control tm-search-submit">Search</button>
+    </div>
+    <div class="form-group tm-advanced-box">
+      <a href="#" class="tm-text-white">Go Advanced ...</a>
+    </div>
+  </div>
+</div>
+<div id="videoListContainer"></div>
+{{#section 'script'}}
+
+<script>
+  const videoList = document.getElementById('videoListContainer');
+
+  function keyWordsearch() {
+
+    gapi.client.setApiKey('AIzaSyCmiLQYBAxWOZu3X3iY0XhNbkWtVtg7Uz4');
+
+    gapi.client.load('youtube', 'v3', function () {
+      makeRequest();
+    });
+    console.log("sss");
+  }
+  function makeRequest() {
+
+
+    var key = $('#keyword').val();
+    var request = gapi.client.youtube.search.list({
+      q: key,
+      part: 'snippet',
+      maxResults: 30,
+      order: "viewCount",
+    });
+
+
+
+
+    request.execute(function (response) {
+
+      const listItems = response.result.items;
+
+      if (listItems) {
+        let output = '<h4 style="padding: 10px 0px 0px 0px"></h4><ul style="list-style-type: none">';
+
+        listItems.forEach(item => {
+          const videoId = item.id.videoId;
+          const videoTitle = item.snippet.title;
+          const dep = item.snippet.description;
+          output += `
+     <li>               
+<div class="d-flex justify-content-start" >
+  <div style ="padding : 10px" ><a href="/search/sing/${videoId}"><img src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg"></a></div>
+  <div><div class="d-flex flex-column bd-highlight mb-3">
+  <h5 class="p-2 bd-highlight">${videoTitle} </h5>
+  <div class="p-2 bd-highlight">${dep}</div>
+  
+</div></div>
+</div>
+  </li>                    
+                `;
+        });
+        output += '</ul>';
+
+        // Output list
+        videoList.innerHTML = output;
+      }
+
+    });
+  }
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"> </script>
+
+{{/section}}

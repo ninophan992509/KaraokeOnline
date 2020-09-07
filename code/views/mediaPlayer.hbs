@@ -1,0 +1,75 @@
+<style>
+    body {
+    background:black ;
+    padding: 0px;
+    margin: 0px;
+}
+
+#player {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto 10vh auto;
+    margin: 10px;
+    display: block;
+}
+
+.info-song{
+    display: block;
+    color: #fff;
+    border:3px rgb(67, 67, 67) solid;
+    padding:2%;
+    
+}
+</style>
+
+
+<div id="player">
+    <canvas id="canvas"></canvas>
+    <div class="d-flex">
+    <div class="p-2 m-2 flex-fill" id="info-song">
+       
+            <audio controls id="audio">
+               <source id="audioSrc" src=""></source>
+            </audio>
+        <p>
+        <input type="file" accept="audio/*" id="file" onchange="changeFile(event)">
+        </p>
+        <p>
+            <label>Title:</label>
+            <span id="title"></span>
+        </p>
+    
+        <p>
+            <label>Artist:</label>
+            <span id="artist"></span>
+        </p>
+    
+        <p>
+            <label>Album:</label>
+            <span id="album"></span>
+        </p>
+        <img id="picture" style="display: none; width:20vw ;height:20vw;" src="" alt= "picture extracted from ID3" />
+    
+    
+    </div>
+    <div  class="p-2 m-2 flex-fill" id="controls">
+    <select onchange="changeFilterType(this.value);">
+    <option value="lowpass">LowPass</option>
+    <option value="highpass">HighPass</option>
+    <option value="bandpass">BandPass</option>
+    <option value="lowshelf">LowShelf</option>
+    <option value="highshelf">HighShelf</option>
+    <option value="peaking">Peaking</option>
+    <option value="notch">Notch</option>
+    <option value="allpass">AllPass</option>
+    </select>
+     <p><input type="checkbox" id="onFilter"  onchange="toggleFilter();">
+     <label for="c1"><span></span>Enable filter</label>
+     </p>
+    </div>
+    </div>
+</div>
+{{#section 'script'}}
+<script src="/js/id3-minimized.js"></script>
+<script src="/js/mediaplayer.js"></script>
+{{/section}}
